@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Standalone Grok Bot face animation playground" />
+    <title>Face Lab</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='14' cy='17' r='10' fill='%23171713'/%3E%3Ccircle cx='23' cy='9' r='6' fill='%23ff5d35'/%3E%3C/svg%3E" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="noise" aria-hidden="true"></div>
+    <header class="topbar">
+      <a class="brand" href="#top" aria-label="Face Lab home">
+        <span class="brand-mark"><i></i><i></i></span>
+        <span>FACE LAB</span>
+      </a>
+      <p>Grok Bot · motion playground</p>
+      <div class="live"><span></span> interactive</div>
+    </header>
+
+    <main id="top">
+      <section class="hero-grid" aria-labelledby="playground-title">
+        <div class="stage-card">
+          <div class="stage-head">
+            <div>
+              <p class="eyebrow">Interactive specimen</p>
+            </div>
+            <button class="icon-button" id="pauseButton" type="button" aria-pressed="false">
+              <span class="pause-icon" aria-hidden="true"></span>
+              <span>Pause</span>
+            </button>
+          </div>
+
+          <div class="hero-stage" id="heroStage">
+            <div id="heroFace"></div>
+            <div class="gaze-hint" id="gazeHint"><span></span> move your pointer</div>
+          </div>
+
+          <div class="now-playing" aria-live="polite">
+            <span>Now playing</span>
+            <strong id="nowPlaying">blob · black · idle</strong>
+          </div>
+        </div>
+
+        <aside class="control-panel" aria-label="Face controls">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Control room</p>
+              <h2>Dial it in</h2>
+            </div>
+            <button class="shuffle-button" id="randomizeButton" type="button">Randomize</button>
+          </div>
+
+          <div class="field-row">
+            <label class="field">
+              <span>Shape</span>
+              <select id="shapeSelect"></select>
+            </label>
+            <label class="field">
+              <span>State</span>
+              <select id="stateSelect"></select>
+            </label>
+          </div>
+
+          <fieldset class="color-field">
+            <legend>Color</legend>
+            <div class="swatches" id="colorSwatches"></div>
+          </fieldset>
+
+          <div class="field-row sliders">
+            <label class="range-field">
+              <span>Motion <output id="speedOutput">1.0×</output></span>
+              <input id="speedRange" type="range" min="0.4" max="2" value="1" step="0.1" />
+            </label>
+            <label class="range-field">
+              <span>Gaze <output id="gazeOutput">100%</output></span>
+              <input id="gazeRange" type="range" min="0" max="1" value="1" step="0.1" />
+            </label>
+          </div>
+
+          <fieldset class="actions-field">
+            <legend>One-shot actions</legend>
+            <div class="action-grid">
+              <button type="button" data-action="blink">Blink</button>
+              <button type="button" data-action="bounce">Bounce</button>
+              <button type="button" data-action="burst">Burst</button>
+              <button type="button" data-action="spin">Spin</button>
+              <button type="button" data-action="dizzy">Dizzy</button>
+              <button type="button" data-action="wild">Wild</button>
+            </div>
+          </fieldset>
+
+          <button class="autoplay-button is-on" id="autoplayButton" type="button" aria-pressed="true">
+            <span class="play-pip" aria-hidden="true"></span>
+            <span>Demo sequence is on</span>
+            <small>30.75 s loop</small>
+          </button>
+          <div class="sequence-controls">
+            <div class="sequence-heading"><strong id="sequenceLabel">Home</strong><button id="replayButton" type="button">Replay</button></div>
+            <label class="range-field">
+              <span>Demo sequence <output id="timeOutput">0.0 / 30.8 s</output></span>
+              <input id="timeline" aria-label="Seek demo sequence" type="range" min="0" max="30749" value="0" step="50" />
+            </label>
+          </div>
+        </aside>
+      </section>
+
+      <section class="sampler" aria-labelledby="sampler-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Coverage sampler</p>
+            <h2 id="sampler-title">Every silhouette, always moving.</h2>
+          </div>
+          <p><strong>18</strong> shapes · <strong>11</strong> colors · <strong>39</strong> states</p>
+        </div>
+        <div class="face-grid" id="faceGrid"></div>
+      </section>
+
+      <section class="state-strip" aria-labelledby="states-title">
+        <div class="section-heading compact">
+          <div>
+            <p class="eyebrow">State index</p>
+            <h2 id="states-title">The full motion vocabulary.</h2>
+          </div>
+          <p>Click any state to send it to the main face.</p>
+        </div>
+        <div class="state-list" id="stateList"></div>
+      </section>
+    </main>
+
+    <footer>
+      <p>Original face renderer · interactive motion playground.</p>
+      <p><kbd>R</kbd> randomize · <kbd>Space</kbd> pause</p>
+    </footer>
+
+    <script src="./face-data.js"></script>
+    <script src="./face-runtime.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
