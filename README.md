@@ -2,6 +2,10 @@
 
 A standalone Grok Bot face animation playground with 18 shapes, 11 colors, 39 states, six actions, and a 30.75-second demo sequence. Everything runs in the browser from the included HTML, CSS, and JavaScript files.
 
+# Demo
+
+<https://mikeg0.github.io/grokbot-face/>
+
 ## Run locally
 
 Open `index.html` directly, or serve this directory:
